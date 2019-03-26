@@ -18,9 +18,11 @@ const findPeople = (firstName, cb) => {
 
 const printPeople = peopleArr => {
   for (const person of peopleArr) {
+    const birthdate = person.birthdate.toISOString().substring(0, 10);
     console.log(
-      `- ${person.id}: ${person.first_name} ${person.last_name}, born ${
-        person.birthdate}`
+      `- ${person.id}: ${person.first_name} ${
+        person.last_name
+      }, born ${birthdate}`
     );
   }
 };
