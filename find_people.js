@@ -9,14 +9,16 @@ client.connect(err => {
     console.log(`Connected to ${settings.database}`);
   }
 
-  const [ node, path, first_name] = process.argv;
-  console.log(first_name);
-  const queryText = 'SELECT * FROM famous_people WHERE first_name = $1'
-  // const values = 
+  const [node, path, firstName] = process.argv;
+  const queryText = "SELECT * FROM famous_people WHERE first_name = $1";
+  const values = [firstName];
 
-  // client.query(queryText, values, (err, res) => {
-
-  // })
-
-
+  client.query(queryText, values, (err, res) => {
+    if (err) {
+      console.log(err.stack);
+    } else {
+      console.log(res.rows);
+    }
+    client.end();
+  });
 });
